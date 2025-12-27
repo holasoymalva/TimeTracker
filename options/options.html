@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración - FocusFlow</title>
+    <link rel="stylesheet" href="../popup/popup.css"> <!-- Reuse variables/base styles -->
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../icons/icon128.png" alt="Logo" width="32">
+                <h2>FocusFlow</h2>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-tab="limits">Límites y Bloqueos</button>
+                <button class="nav-btn" data-tab="stats">Estadísticas</button>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div id="limits-tab" class="tab-content active">
+                <header class="section-header">
+                    <h3>Control de Acceso</h3>
+                    <p>Define cuánto tiempo quieres invertir en sitios específicos.</p>
+                </header>
+
+                <div class="card add-limit-card">
+                    <h4>Agregar Regla</h4>
+                    <div class="input-group">
+                        <input type="text" id="domain-input" placeholder="ej. facebook.com">
+                        <select id="type-select">
+                            <option value="limit">Límite de Tiempo</option>
+                            <option value="block">Bloquear Siempre</option>
+                        </select>
+                        <input type="number" id="time-input" placeholder="Minutos" min="1">
+                        <button id="add-rule-btn" class="primary-btn">Guardar</button>
+                    </div>
+                </div>
+
+                <div class="card list-card">
+                    <h4>Reglas Activas</h4>
+                    <div id="rules-list" class="rules-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="stats-tab" class="tab-content">
+                <header class="section-header">
+                    <h3>Tu Actividad</h3>
+                </header>
+                <div class="card">
+                    <p>Visualización detallada próximamente...</p>
+                    <ul id="full-stats-list"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="options.js"></script>
+</body>
+
+</html>

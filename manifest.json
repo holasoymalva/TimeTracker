@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "FocusFlow - Time Tracker & Blocker",
+  "version": "1.0.0",
+  "description": "Estadísticas de uso web y bloqueo de distracciones.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "alarms",
+    "webNavigation"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}
