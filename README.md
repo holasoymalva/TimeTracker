@@ -1,7 +1,7 @@
 <div align="center">
   <img src="icons/icon128.png" alt="FocusFlow Logo" width="128" height="128" />
 
-  # FocusFlow
+  # FocusFlow - Time Tracker & Blocker
   
   **Reclaim Your Attention in the Digital Age.**
   
