@@ -141,8 +141,18 @@ async function removeBlock(domain) {
 
 async function loadStats() {
     const data = await chrome.storage.local.get(['stats']);
-    const today = new Date().toDateString();
-    const stats = data.stats?.[today] || {};
+    const statsMap = data.stats || {};
+
+    // Aggregate global stats from all days
+    const globalStats = {};
+    for (const date in statsMap) {
+        const dayStats = statsMap[date];
+        for (const [domain, seconds] of Object.entries(dayStats)) {
+            if (!globalStats[domain]) globalStats[domain] = 0;
+            globalStats[domain] += seconds;
+        }
+    }
+
     const list = document.getElementById('full-stats-list');
     const legend = document.getElementById('stats-legend');
     const canvas = document.getElementById('stats-chart');
@@ -154,14 +164,14 @@ async function loadStats() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Prepare Data
-    const entries = Object.entries(stats).sort(([, a], [, b]) => b - a);
+    const entries = Object.entries(globalStats).sort(([, a], [, b]) => b - a);
     const totalSeconds = entries.reduce((acc, [, s]) => acc + s, 0);
 
     if (totalSeconds === 0) {
         ctx.fillStyle = '#565f89';
         ctx.font = '14px Inter';
         ctx.textAlign = 'center';
-        ctx.fillText('Sin datos hoy', canvas.width / 2, canvas.height / 2);
+        ctx.fillText('Sin datos registrados', canvas.width / 2, canvas.height / 2);
         return;
     }
 
